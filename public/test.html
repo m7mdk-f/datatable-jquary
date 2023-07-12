@@ -17,7 +17,6 @@
   </head>
   <body class="bg-[#f5f8fa] scrollbar relative dark:bg-[#151521]">
     <div>
-
     <!-- head link 
         <link
       rel="stylesheet"
@@ -82,10 +81,10 @@
         background-color: red;
         /* !important inside */
       }
-      .show {
+      .show12 {
         animation: tranlslate 0.7s linear forwards;
       }
-      .hide {
+      .hide12 {
         animation: bgop 0.7s linear forwards;
       }
       @keyframes bgop {
@@ -226,7 +225,7 @@
     >
       <div
         id="bg"
-        class="w-full hh hide h-full bg-black opacity-40 fixed"
+        class="w-full hh hide12 h-full bg-black opacity-40 fixed"
       ></div>
 
       <div
@@ -236,7 +235,7 @@
       >
         <div
           id="editUserModal"
-          class="fixed show z-50 w-full max-w-3xl max-h-full"
+          class="fixed show12 z-50 w-full max-w-3xl max-h-full"
         >
           <!-- Modal content -->
           <form
@@ -353,8 +352,6 @@
         </div>
       </div>
     </div>
-
-    <!-- inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white -->
     <div class="">
       <table id="myTable" class="overflow-x-scroll" style="width: 100%">
         <thead>
@@ -378,6 +375,7 @@
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <script>
       $(document).ready(function () {
+
         var dataSet = [[1,"Brod Lempel","Calle Blancos","5/31/2023","$3.55"],
 [2,"Wendell Antonelli","Verkhnevilyuysk","10/16/2022","$0.25"],
 [3,"Theodosia Cassidy","Bang Rak","2/18/2023","$4.46"],
@@ -585,22 +583,28 @@ let id =0;
         });
 
         $("#butsc").on('click',(even)=>{
-          if($("#butsc").html()=='Create'){
-                  if($("#name").val()!=''&&$("#postion").val()!=''&&$("#stat-data").val()!=''&&$("#salary").val()!=''){
-                    let newid=dataSet.length+1
-                    let details=[]
-                    details.push(id)
-                    details.push($("#name").val())
-                    details.push($("#postion").val())
-                    details.push($("#stat-data").val())
-                    details.push($("#salary").val())
-                    dataSet.unshift(details)
-                    even.preventDefault()
-                    table.clear().rows.add(dataSet).draw();
-                    remove()
-                  }
-
-          }
+          if ($("#butsc").html() == "Create") {
+                      if (
+                        $("#name").val() != "" &&
+                        $("#postion").val() != "" &&
+                        $("#stat-data").val() != "" &&
+                        $("#salary").val() != ""
+                      ) {
+                        let newid = dataSet[0][0] - 1;
+                        let details = [];
+                        details.push(newid);
+                        details.push($("#name").val());
+                        details.push($("#postion").val());
+                        details.push($("#stat-data").val());
+                        details.push($("#salary").val());
+                        dataSet.unshift(details);
+                        console.log(dataSet);
+                        even.preventDefault();
+                        console.log(newid);
+                        table.clear().rows.add(dataSet).draw();
+                        remove();
+                      }
+                    }
           else{
                   if($("#name").val()!=''&&$("#postion").val()!=''&&$("#stat-data").val()!=''&&$("#salary").val()!=''){
                     let details=[]
@@ -659,14 +663,14 @@ let id =0;
 
       $(".hh").on("click", remove);
       function remove() {
-        $("#bg").removeClass("hide");
+        $("#bg").removeClass("hide12");
         $("#bg").addClass("hidere");
-        $("#editUserModal").removeClass("show");
+        $("#editUserModal").removeClass("show12");
         $("#editUserModal").addClass("showre");
         setTimeout(() => {
           $("#sectionedit").addClass("hidden");
-          $("#bg").addClass("hide");
-          $("#editUserModal").addClass("show");
+          $("#bg").addClass("hide12");
+          $("#editUserModal").addClass("show12");
           $("#editUserModal").removeClass("showre");
           $("#bg").removeClass("hidere");
         }, 700);
